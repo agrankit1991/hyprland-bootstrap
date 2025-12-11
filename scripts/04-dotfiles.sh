@@ -177,11 +177,6 @@ create_user_variables_config() {
 \$magenta      = rgb(cba6f7)
 \$cyan         = rgb(94e2d5)
 
-# ── Cursor Theme ─────────────────────────────────────────────────────────────────────
-
-\$cursorTheme  = $CURSOR_THEME
-\$cursorSize   = $CURSOR_SIZE
-
 # ── Appearance ─────────────────────────────────────────────────────────────────────
 
 \$borderSize   = 2
