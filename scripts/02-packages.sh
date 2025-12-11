@@ -10,9 +10,8 @@
 set -e
 
 # Get script directory and source utilities
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/../lib/colors.sh"
-source "$SCRIPT_DIR/../lib/utils.sh"
+source "$SCRIPT_DIR/lib/colors.sh"
+source "$SCRIPT_DIR/lib/utils.sh"
 
 # ── Package Lists ────────────────────────────────────────────────────────────
 
@@ -80,7 +79,6 @@ PACKAGES_THEMING=(
     qt5ct               # Qt5 theme configuration tool
     qt6ct               # Qt6 theme configuration tool
     nwg-look            # GTK theme/icon/cursor configurator
-    bibata-cursor-theme # Bibata cursor theme (includes Bibata-Modern-Ice)
 )
 
 # CLI tools

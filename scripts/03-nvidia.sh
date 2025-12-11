@@ -10,10 +10,9 @@
 set -e
 
 # Get script directory and source utilities
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/../lib/colors.sh"
-source "$SCRIPT_DIR/../lib/utils.sh"
-source "$SCRIPT_DIR/../config.sh" 2>/dev/null || true
+source "$SCRIPT_DIR/lib/colors.sh"
+source "$SCRIPT_DIR/lib/utils.sh"
+source "$SCRIPT_DIR/config.sh" 2>/dev/null || true
 
 # ── Nvidia Packages ──────────────────────────────────────────────────────────
 
