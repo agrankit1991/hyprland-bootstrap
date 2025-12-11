@@ -1,0 +1,207 @@
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* ║                            Waybar Styling                                 ║ */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Global Styles ─────────────────────────────────────────────────────────── */
+
+* {
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 12px;
+    font-weight: bold;
+}
+
+window#waybar {
+    background-color: rgba(30, 30, 46, 0.9);
+    border-bottom: 2px solid rgba(137, 180, 250, 1);
+    color: #cdd6f4;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+}
+
+/* ── Workspace Styles ─────────────────────────────────────────────────────── */
+
+#workspaces {
+    margin: 0 4px;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background-color: transparent;
+    color: #6c7086;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    margin: 2px 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+#workspaces button:hover {
+    background-color: rgba(108, 112, 134, 0.2);
+    color: #cdd6f4;
+}
+
+#workspaces button.active {
+    background-color: rgba(137, 180, 250, 0.2);
+    color: #89b4fa;
+    border-color: #89b4fa;
+}
+
+#workspaces button.urgent {
+    background-color: rgba(243, 139, 168, 0.2);
+    color: #f38ba8;
+    border-color: #f38ba8;
+}
+
+/* ── Window and Submap Styles ─────────────────────────────────────────────── */
+
+#window {
+    margin: 0 4px;
+    padding: 0 8px;
+    border-radius: 8px;
+    background-color: rgba(49, 50, 68, 0.8);
+}
+
+#submap {
+    margin: 0 4px;
+    padding: 0 8px;
+    border-radius: 8px;
+    background-color: rgba(249, 226, 175, 0.2);
+    color: #f9e2af;
+    border: 1px solid #f9e2af;
+}
+
+/* ── Clock Styles ─────────────────────────────────────────────────────────── */
+
+#clock {
+    margin: 0 4px;
+    padding: 0 12px;
+    border-radius: 8px;
+    background-color: rgba(137, 180, 250, 0.2);
+    color: #89b4fa;
+    font-weight: bold;
+}
+
+/* ── Module Base Styles ───────────────────────────────────────────────────── */
+
+.modules-right > widget > * {
+    margin: 0 2px;
+    padding: 0 8px;
+    border-radius: 8px;
+    background-color: rgba(49, 50, 68, 0.8);
+}
+
+/* ── System Tray ──────────────────────────────────────────────────────────── */
+
+#tray {
+    background-color: rgba(49, 50, 68, 0.8);
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: rgba(243, 139, 168, 0.2);
+}
+
+/* ── Custom Modules ───────────────────────────────────────────────────────── */
+
+#custom-clipboard {
+    color: #a6e3a1;
+    background-color: rgba(166, 227, 161, 0.2);
+}
+
+#custom-powermenu {
+    color: #f38ba8;
+    background-color: rgba(243, 139, 168, 0.2);
+    margin-right: 8px;
+}
+
+#custom-powermenu:hover {
+    background-color: rgba(243, 139, 168, 0.4);
+}
+
+/* ── Audio Module ─────────────────────────────────────────────────────────── */
+
+#pulseaudio {
+    color: #89b4fa;
+    background-color: rgba(137, 180, 250, 0.2);
+}
+
+#pulseaudio.muted {
+    color: #f38ba8;
+    background-color: rgba(243, 139, 168, 0.2);
+}
+
+/* ── Network Module ───────────────────────────────────────────────────────── */
+
+#network {
+    color: #a6e3a1;
+    background-color: rgba(166, 227, 161, 0.2);
+}
+
+#network.disconnected {
+    color: #f38ba8;
+    background-color: rgba(243, 139, 168, 0.2);
+}
+
+/* ── System Resource Modules ──────────────────────────────────────────────── */
+
+#cpu {
+    color: #f9e2af;
+    background-color: rgba(249, 226, 175, 0.2);
+}
+
+#memory {
+    color: #cba6f7;
+    background-color: rgba(203, 166, 247, 0.2);
+}
+
+/* ── Battery Module ───────────────────────────────────────────────────────── */
+
+#battery {
+    color: #a6e3a1;
+    background-color: rgba(166, 227, 161, 0.2);
+}
+
+#battery.charging, #battery.plugged {
+    color: #89b4fa;
+    background-color: rgba(137, 180, 250, 0.2);
+}
+
+#battery.warning:not(.charging) {
+    color: #f9e2af;
+    background-color: rgba(249, 226, 175, 0.2);
+}
+
+#battery.critical:not(.charging) {
+    color: #f38ba8;
+    background-color: rgba(243, 139, 168, 0.2);
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* ── Animations ───────────────────────────────────────────────────────────── */
+
+@keyframes blink {
+    to {
+        background-color: rgba(243, 139, 168, 0.5);
+        color: #11111b;
+    }
+}
+
+/* ── Tooltip Styles ───────────────────────────────────────────────────────── */
+
+tooltip {
+    background: rgba(30, 30, 46, 0.9);
+    color: #cdd6f4;
+    border: 1px solid #89b4fa;
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: #cdd6f4;
+}

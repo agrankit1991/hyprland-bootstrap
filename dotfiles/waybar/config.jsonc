@@ -1,0 +1,185 @@
+{
+    // ═══════════════════════════════════════════════════════════════════════════
+    // ║                            Waybar Configuration                           ║
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    // ── Main Configuration ─────────────────────────────────────────────────────
+    "layer": "top",
+    "position": "top", 
+    "height": 35,
+    "spacing": 4,
+    "exclusive": true,
+    "gtk-layer-shell": true,
+    "passthrough": false,
+
+    // ── Module Layout ──────────────────────────────────────────────────────────
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/submap",
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "tray",
+        "custom/clipboard",
+        "pulseaudio",
+        "network", 
+        "cpu",
+        "memory",
+        "battery",
+        "custom/powermenu"
+    ],
+
+    // ── Module Configuration ───────────────────────────────────────────────────
+
+    // Workspaces
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "󰈹",
+            "2": "",
+            "3": "",
+            "4": "󰭹",
+            "5": "",
+            "6": "󰊴",
+            "7": "",
+            "8": "",
+            "9": "",
+            "10": "󰽰"
+        },
+        "on-click": "activate",
+        "sort-by-number": true
+    },
+
+    // Submap (resize mode, etc.)
+    "hyprland/submap": {
+        "format": "✱ {}",
+        "max-length": 8,
+        "tooltip": false
+    },
+
+    // Active window title
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 50,
+        "separate-outputs": true,
+        "rewrite": {
+            "(.*) — Mozilla Firefox": "🌎 $1",
+            "(.*) - Brave": "🌎 $1", 
+            "(.*) - Visual Studio Code": "󰨞 $1",
+            "(.*) - Discord": "󰙯 Discord",
+            "Spotify Premium": "󰓇 Spotify"
+        }
+    },
+
+    // Clock
+    "clock": {
+        "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%H:%M}",
+        "format-alt": "{:%Y-%m-%d %H:%M:%S}",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+    // System tray
+    "tray": {
+        "spacing": 10
+    },
+
+    // Custom clipboard module
+    "custom/clipboard": {
+        "format": "󰅌",
+        "tooltip": false,
+        "on-click": "cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+    },
+
+    // Audio
+    "pulseaudio": {
+        "scroll-step": 5,
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pamixer --toggle-mute",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "pamixer -i 5",
+        "on-scroll-down": "pamixer -d 5",
+        "tooltip": false
+    },
+
+    // Network
+    "network": {
+        "format-wifi": "  {signalStrength}%",
+        "format-ethernet": "󰈀",
+        "format-linked": "󰈀",
+        "format-disconnected": "󰤭",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": "{essid} ({signalStrength}%)\n{ipaddr}/{cidr}",
+        "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
+        "on-click-right": "nm-connection-editor"
+    },
+
+    // CPU
+    "cpu": {
+        "format": "  {usage}%",
+        "tooltip": false,
+        "on-click": "kitty --title htop -e htop"
+    },
+
+    // Memory
+    "memory": {
+        "format": "  {}%",
+        "tooltip": false,
+        "on-click": "kitty --title htop -e htop"
+    },
+
+    // Battery
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰂄 {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip": false
+    },
+
+    // Custom power menu
+    "custom/powermenu": {
+        "format": "⏻",
+        "tooltip": false,
+        "on-click": "~/.config/rofi/powermenu/type-1/powermenu.sh"
+    }
+}

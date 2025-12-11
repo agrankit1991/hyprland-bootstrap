@@ -1,0 +1,135 @@
+/* Catppuccin Mocha SwayNC Theme */
+
+* {
+  all: unset;
+  font-family: "JetBrains Mono Nerd Font";
+  font-size: 14px;
+  transition: 200ms;
+}
+
+.notification-center-wrapper {
+  background: rgba(30, 30, 46, 0.95);
+  border: 2px solid #89b4fa;
+  border-radius: 12px;
+  margin: 12px;
+}
+
+.notification-center {
+  background: transparent;
+  padding: 12px;
+}
+
+.notification-center-header {
+  background: transparent;
+  padding: 12px;
+  border-bottom: 1px solid #45475a;
+}
+
+.notification-center-header-title {
+  color: #cdd6f4;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.notification-center-header-button {
+  background: #89b4fa;
+  color: #1e1e2e;
+  border-radius: 6px;
+  padding: 6px 12px;
+}
+
+.notification-center-header-button:hover {
+  background: #74c7ec;
+}
+
+.notification {
+  background: rgba(49, 50, 68, 0.8);
+  border: 1px solid #45475a;
+  border-radius: 10px;
+  margin: 6px 0;
+  padding: 12px;
+}
+
+.notification:hover {
+  border-color: #89b4fa;
+}
+
+.notification-default-action {
+  background: transparent;
+  color: #cdd6f4;
+}
+
+.notification-content {
+  background: transparent;
+}
+
+.summary {
+  color: #cdd6f4;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.body {
+  color: #bac2de;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.notification-action {
+  background: #89b4fa;
+  color: #1e1e2e;
+  border-radius: 6px;
+  padding: 6px 12px;
+  margin: 4px 2px;
+}
+
+.notification-action:hover {
+  background: #74c7ec;
+}
+
+.close-button {
+  background: #f38ba8;
+  color: #1e1e2e;
+  border-radius: 50%;
+  padding: 4px;
+}
+
+.close-button:hover {
+  background: #eba0ac;
+}
+
+/* Urgency levels */
+.notification.low {
+  border-left-color: #a6e3a1;
+}
+
+.notification.normal {
+  border-left-color: #89b4fa;
+}
+
+.notification.critical {
+  border-left-color: #f38ba8;
+}
+
+.control-center {
+  background: transparent;
+}
+
+.control-center-dnd {
+  background: transparent;
+  padding: 12px;
+  border-bottom: 1px solid #45475a;
+}
+
+.control-center-dnd-label {
+  color: #cdd6f4;
+  font-weight: bold;
+}
+
+.control-center-dnd-slider {
+  background: #45475a;
+}
+
+.control-center-dnd-slider:checked {
+  background: #89b4fa;
+}
