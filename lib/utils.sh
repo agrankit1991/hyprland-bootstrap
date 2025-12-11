@@ -4,7 +4,6 @@
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 # Source colors if not already loaded
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 [[ -z "$NC" ]] && source "$SCRIPT_DIR/colors.sh"
 
 # ── Logging Functions ────────────────────────────────────────────────────────

@@ -16,7 +16,7 @@ source "$SCRIPT_DIR/config.sh"
 
 # ── Global Variables ──────────────────────────────────────────────────────────
 
-DOTFILES_DIR="$SCRIPT_DIR/../dotfiles"
+DOTFILES_DIR="$SCRIPT_DIR/dotfiles"
 BACKUP_DIR="$HOME/.config/hypr-backup"
 
 # ── Configuration Mapping ────────────────────────────────────────────────────
