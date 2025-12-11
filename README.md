@@ -62,6 +62,7 @@ hyprland-bootstrap/
 │   ├── hypr/               # Hyprland configs (modular)
 │   │   ├── hyprland.conf   # Main config (sources other files)
 │   │   ├── configs/
+│   │   │   ├── variables.conf   # User-configurable defaults
 │   │   │   ├── monitors.conf
 │   │   │   ├── keybinds.conf
 │   │   │   ├── autostart.conf
@@ -94,6 +95,7 @@ After installation, configuration files are located at:
 ~/.config/hypr/
 ├── hyprland.conf           # Main config (sources all modules)
 ├── configs/
+│   ├── variables.conf      # User defaults (apps, theme colors, gaps)
 │   ├── monitors.conf       # Monitor setup & workspaces
 │   ├── keybinds.conf       # All keybindings
 │   ├── autostart.conf      # exec-once commands
@@ -113,24 +115,73 @@ After installation, configuration files are located at:
 - Kitty: `~/.config/kitty/`
 - SwayNC: `~/.config/swaync/`
 
+### Variables (Easy Configuration)
+
+All user-configurable defaults are in `~/.config/hypr/configs/variables.conf`:
+
+```bash
+# ── Default Applications ──
+$terminal     = kitty
+$browser      = brave
+$fileManager  = nautilus
+$editor       = code
+$launcher     = ~/.config/rofi/launchers/type-1/launcher.sh
+$powermenu    = ~/.config/rofi/powermenu/type-1/powermenu.sh
+
+# ── Theme Colors ──
+$accent       = rgb(89b4fa)    # Catppuccin Blue
+$accentAlpha  = 89b4fa
+$background   = rgb(1e1e2e)    # Catppuccin Base
+$foreground   = rgb(cdd6f4)    # Catppuccin Text
+
+# ── Appearance ──
+$borderSize   = 2
+$rounding     = 10
+$gapsIn       = 5
+$gapsOut      = 10
+$opacity      = 0.95
+
+# ── Wallpaper ──
+$wallpaper    = ~/.config/hypr/wallpapers/default.jpg
+```
+
+Other config files use these variables:
+```bash
+# In keybinds.conf
+bind = $mainMod, Return, exec, $terminal
+bind = $mainMod, B, exec, $browser
+bind = $mainMod, E, exec, $fileManager
+bind = $mainMod, D, exec, $launcher
+
+# In appearance.conf
+general {
+    border_size = $borderSize
+    gaps_in = $gapsIn
+    gaps_out = $gapsOut
+    col.active_border = $accent
+}
+```
+
 ## Keybindings
 
-| Key Combination | Action |
-|-----------------|--------|
-| `Super + Return` | Open terminal |
-| `Super + Q` | Close window |
-| `Super + D` | Open application launcher |
-| `Super + E` | Open file manager |
-| `Super + V` | Clipboard history |
-| `Super + L` | Lock screen |
-| `Super + M` | Logout menu |
-| `Super + 1-9` | Switch workspace |
-| `Super + Shift + 1-9` | Move window to workspace |
-| `Super + Arrow Keys` | Move focus |
-| `Super + Shift + Arrow Keys` | Move window |
-| `Print` | Screenshot (full screen) |
-| `Super + Print` | Screenshot (selection) |
-| `Super + Shift + Print` | Screenshot (window) |
+| Key Combination | Action | Variable |
+|-----------------|--------|----------|
+| `Super + Return` | Open terminal | `$terminal` |
+| `Super + B` | Open browser | `$browser` |
+| `Super + E` | Open file manager | `$fileManager` |
+| `Super + C` | Open editor | `$editor` |
+| `Super + D` | Open application launcher | `$launcher` |
+| `Super + M` | Logout menu | `$powermenu` |
+| `Super + Q` | Close window | - |
+| `Super + V` | Clipboard history | - |
+| `Super + L` | Lock screen | - |
+| `Super + 1-9` | Switch workspace | - |
+| `Super + Shift + 1-9` | Move window to workspace | - |
+| `Super + Arrow Keys` | Move focus | - |
+| `Super + Shift + Arrow Keys` | Move window | - |
+| `Print` | Screenshot (full screen) | - |
+| `Super + Print` | Screenshot (selection) | - |
+| `Super + Shift + Print` | Screenshot (window) | - |
 
 ## Customization
 
