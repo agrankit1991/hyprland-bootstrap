@@ -178,7 +178,12 @@ create_user_variables_config() {
 \$magenta      = rgb(cba6f7)
 \$cyan         = rgb(94e2d5)
 
-# ── Appearance ─────────────────────────────────────────────────────────────────
+# ── Cursor Theme ─────────────────────────────────────────────────────────────────────
+
+\$cursorTheme  = $CURSOR_THEME
+\$cursorSize   = $CURSOR_SIZE
+
+# ── Appearance ─────────────────────────────────────────────────────────────────────
 
 \$borderSize   = 2
 \$rounding     = 10
@@ -186,11 +191,11 @@ create_user_variables_config() {
 \$gapsOut      = 10
 \$opacity      = 0.95
 
-# ── Animation Settings ────────────────────────────────────────────────────────
+# ── Animation Settings ────────────────────────────────────────────────────────────
 
 \$animationSpeed = 1.0
 
-# ── Wallpaper ──────────────────────────────────────────────────────────────────
+# ── Wallpaper ──────────────────────────────────────────────────────────────────────
 
 \$wallpaper    = ~/.config/hypr/wallpapers/$DEFAULT_WALLPAPER
 

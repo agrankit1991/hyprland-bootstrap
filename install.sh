@@ -57,7 +57,6 @@ show_help() {
     echo "  --nvidia        Install Nvidia drivers only"
     echo "  --skip-nvidia   Full install, skip Nvidia drivers"
     echo "  --packages      Install core packages only"
-    echo "  --aur           Install AUR packages only"
     echo "  --dotfiles      Deploy dotfiles only"
     echo "  --dev-tools     Install developer tools only"
     echo "  --security      Install security essentials only"
@@ -135,8 +134,10 @@ show_custom_menu() {
     [[ "$run_packages" == true ]] && source "$SCRIPT_DIR/scripts/02-packages.sh" && install_all_packages
     [[ "$run_nvidia" == true ]] && source "$SCRIPT_DIR/scripts/03-nvidia.sh" && install_nvidia
     
+    # Deploy dotfiles if selected
+    [[ "$run_dotfiles" == true ]] && source "$SCRIPT_DIR/scripts/04-dotfiles.sh" && main
+    
     # TODO: Add remaining components when scripts are created
-    # [[ "$run_dotfiles" == true ]] && source "$SCRIPT_DIR/scripts/04-dotfiles.sh" && deploy_dotfiles
     # [[ "$run_services" == true ]] && source "$SCRIPT_DIR/scripts/05-services.sh" && enable_services
     # [[ "$run_sddm" == true ]] && source "$SCRIPT_DIR/scripts/06-sddm.sh" && configure_sddm
     
@@ -162,8 +163,11 @@ run_full_install() {
     source "$SCRIPT_DIR/scripts/03-nvidia.sh"
     run_nvidia_install
     
+    # Deploy dotfiles
+    source "$SCRIPT_DIR/scripts/04-dotfiles.sh"
+    main
+    
     # TODO: Add remaining installation steps
-    # source "$SCRIPT_DIR/scripts/04-dotfiles.sh"
     # source "$SCRIPT_DIR/scripts/05-services.sh"
     # source "$SCRIPT_DIR/scripts/06-sddm.sh"
     # source "$SCRIPT_DIR/scripts/07-rofi.sh"
@@ -220,18 +224,14 @@ parse_args() {
             --packages)
                 source "$SCRIPT_DIR/scripts/00-checks.sh"
                 run_checks || exit 1
-                source "$SCRIPT_DIR/scripts/01-packages.sh"
+                source "$SCRIPT_DIR/scripts/02-packages.sh"
                 install_all_packages
                 exit 0
                 ;;
-            --aur)
-                source "$SCRIPT_DIR/scripts/02-aur.sh"
-                install_all_aur
-                exit 0
-                ;;
             --dotfiles)
-                log_warning "Dotfiles script not yet implemented"
-                exit 1
+                source "$SCRIPT_DIR/scripts/04-dotfiles.sh"
+                main
+                exit 0
                 ;;
             --dev-tools)
                 log_warning "Developer tools script not yet implemented"
