@@ -43,6 +43,12 @@ This project provides an automated way to set up a fully functional Hyprland-bas
 - **Gradle** - Build automation tool
 - **Maven** - Java build tool
 
+### Security Essentials (Optional)
+- **UFW** - Simple firewall with sensible defaults
+- **ClamAV** - Open-source antivirus with scheduled scans
+- **Timeshift** - System backup & restore snapshots
+- **Firejail** - Sandboxing for browsers & untrusted apps
+
 ## Prerequisites
 
 - Arch Linux (or Arch-based distribution)
@@ -77,6 +83,20 @@ Run individual modules as needed:
 ./install.sh --packages    # Install packages only
 ./install.sh --skip-nvidia # Full install, skip Nvidia
 ./install.sh --dev-tools   # Developer tools only
+./install.sh --security    # Security hardening only
+```
+
+### Security Essentials Install
+
+```bash
+# Install security essentials
+./install.sh --security
+
+# Or run individual modules
+./scripts/security/install-firewall.sh    # UFW with sensible defaults
+./scripts/security/install-antivirus.sh   # ClamAV + weekly scans
+./scripts/security/install-backup.sh      # Timeshift snapshots
+./scripts/security/install-sandbox.sh     # Firejail for browsers
 ```
 
 ### Developer Tools Install
@@ -101,8 +121,13 @@ Edit before installation to customize:
 # ── Installation Options ──
 INSTALL_NVIDIA=true           # Install Nvidia drivers
 INSTALL_SDDM_THEME=true       # Install SDDM theme
-INSTALL_DEV_TOOLS=false       # Install developer tools
 BACKUP_EXISTING=true          # Backup existing configs
+
+# ── Installation Mode ──
+# "all"         - Install everything without prompts
+# "interactive" - Ask before installing each component
+# "minimal"     - Core Hyprland setup only
+INSTALL_MODE="interactive"
 
 # ── AUR Helper ──
 AUR_HELPER="yay"              # yay | paru
@@ -117,19 +142,6 @@ EDITOR="code"
 GTK_THEME="catppuccin-mocha-blue"
 ICON_THEME="Papirus-Dark"
 CURSOR_THEME="Bibata-Modern-Ice"
-
-# ── Developer Tools (when INSTALL_DEV_TOOLS=true) ──
-INSTALL_MISE=true             # mise runtime manager
-INSTALL_DOCKER=true           # Docker & docker-compose
-INSTALL_POSTGRES=true         # PostgreSQL database
-INSTALL_REDIS=false           # Redis in-memory store
-
-# Languages to install via mise
-MISE_LANGUAGES=("java@21" "node@lts" "python@3.12" "go@latest")
-
-# Build tools
-INSTALL_GRADLE=true
-INSTALL_MAVEN=true
 ```
 
 ## Project Structure
@@ -150,12 +162,17 @@ hyprland-bootstrap/
 │   ├── 08-rofi.sh          # Rofi theme installation (adi1090x)
 │   ├── 09-gtk-qt.sh        # GTK/Qt theming setup
 │   ├── 10-post-install.sh  # Final cleanup & instructions
-│   └── dev/                # Developer tools (optional)
-│       ├── install-mise.sh         # mise runtime manager
-│       ├── install-languages.sh    # Programming languages
-│       ├── install-databases.sh    # PostgreSQL, Redis
-│       ├── install-containers.sh   # Docker setup
-│       └── install-build-tools.sh  # Gradle, Maven, etc.
+│   ├── dev/                # Developer tools (optional)
+│   │   ├── install-mise.sh         # mise runtime manager
+│   │   ├── install-languages.sh    # Programming languages
+│   │   ├── install-databases.sh    # PostgreSQL, Redis
+│   │   ├── install-containers.sh   # Docker setup
+│   │   └── install-build-tools.sh  # Gradle, Maven, etc.
+│   └── security/           # Security essentials (optional)
+│       ├── install-firewall.sh     # UFW with sensible defaults
+│       ├── install-antivirus.sh    # ClamAV + scheduled scans
+│       ├── install-backup.sh       # Timeshift configuration
+│       └── install-sandbox.sh      # Firejail for browsers
 ├── lib/                    # Shared functions
 │   ├── colors.sh           # Terminal colors & formatting
 │   ├── utils.sh            # Helper functions (logging, prompts)
@@ -367,6 +384,22 @@ GTK themes can be configured using `nwg-look` or by editing `~/.config/gtk-3.0/s
 - gradle
 - maven
 - make, cmake
+
+### Security Essentials (Optional)
+
+#### Firewall
+- ufw (simple firewall)
+- gufw (optional GUI)
+
+#### Antivirus
+- clamav, clamtk (GUI)
+- freshclam (virus database updates)
+
+#### Backup
+- timeshift (system snapshots)
+
+#### Sandboxing
+- firejail (isolate browsers & apps)
 
 ## Nvidia Setup
 
