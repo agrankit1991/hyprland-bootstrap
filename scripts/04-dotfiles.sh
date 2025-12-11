@@ -124,7 +124,14 @@ deploy_dotfiles() {
             fi
             
             # Copy the configuration
-            cp -r "$source" "$target"
+            if [[ -d "$source" ]]; then
+                # For directories, create target and copy contents
+                mkdir -p "$target"
+                cp -r "$source"/* "$target"/
+            else
+                # For files, copy directly
+                cp "$source" "$target"
+            fi
             log_substep "Deployed: $(basename "$target")"
             ((deployed_count++))
         else
