@@ -47,7 +47,7 @@ CURSOR_SIZE=24
 # ── Wallpaper ────────────────────────────────────────────────────────────────
 
 # Default wallpaper (relative to dotfiles/wallpapers or absolute path)
-DEFAULT_WALLPAPER="default.jpg"
+DEFAULT_WALLPAPER="default.png"
 
 # ── Directories ──────────────────────────────────────────────────────────────
 

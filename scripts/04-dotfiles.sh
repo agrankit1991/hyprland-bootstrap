@@ -250,6 +250,15 @@ setup_wallpaper() {
     else
         log_warning "Default wallpaper not found: $default_wallpaper"
     fi
+    
+    # Copy user avatar image if available
+    local face_image="$wallpaper_dir/face.png"
+    if [[ -f "$face_image" ]]; then
+        cp "$face_image" "$HOME/.face"
+        log_substep "Set user avatar: ~/.face"
+    else
+        log_substep "User avatar not found, hyprlock will use fallback"
+    fi
 }
 
 validate_deployment() {
