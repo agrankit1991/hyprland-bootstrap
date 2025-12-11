@@ -156,8 +156,8 @@ create_user_variables_config() {
 \$browser      = $BROWSER
 \$fileManager  = $FILE_MANAGER
 \$editor       = $EDITOR
-\$launcher     = ~/.config/rofi/launchers/type-1/launcher.sh
-\$powermenu    = ~/.config/rofi/powermenu/type-1/powermenu.sh
+\$launcher     = $HOME/.config/rofi/launchers/type-1/launcher.sh
+\$powermenu    = $HOME/.config/rofi/powermenu/type-1/powermenu.sh
 
 # ── Theme Colors ───────────────────────────────────────────────────────────────
 # Catppuccin Mocha color scheme
@@ -191,7 +191,7 @@ create_user_variables_config() {
 
 # ── Wallpaper ──────────────────────────────────────────────────────────────────────
 
-\$wallpaper    = ~/.config/hypr/wallpapers/$DEFAULT_WALLPAPER
+\$wallpaper    = $HOME/.config/hypr/wallpapers/$DEFAULT_WALLPAPER
 
 # ── Monitor Configuration ─────────────────────────────────────────────────────
 # Edit the monitors.conf file for detailed monitor setup
