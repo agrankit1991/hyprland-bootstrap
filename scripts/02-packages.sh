@@ -80,6 +80,7 @@ PACKAGES_THEMING=(
     qt5ct               # Qt5 theme configuration tool
     qt6ct               # Qt6 theme configuration tool
     nwg-look            # GTK theme/icon/cursor configurator
+    bibata-cursor-theme # Bibata cursor theme (includes Bibata-Modern-Ice)
 )
 
 # CLI tools
