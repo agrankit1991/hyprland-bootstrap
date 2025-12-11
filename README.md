@@ -29,6 +29,20 @@ This project provides an automated way to set up a fully functional Hyprland-bas
 - **Swww** - Wallpaper manager with smooth transitions
 - **Cliphist** - Clipboard manager
 
+### Developer Tools (Optional)
+- **mise** - Polyglot runtime manager (replaces asdf, nvm, pyenv, etc.)
+- **Java** - OpenJDK (LTS versions via mise)
+- **Node.js** - JavaScript runtime (via mise)
+- **npm/pnpm** - Node package managers
+- **Python** - Python runtime (via mise)
+- **Go** - Go programming language (via mise)
+- **Rust** - Rust toolchain (via rustup)
+- **PostgreSQL** - Relational database
+- **Redis** - In-memory data store
+- **Docker** - Container runtime
+- **Gradle** - Build automation tool
+- **Maven** - Java build tool
+
 ## Prerequisites
 
 - Arch Linux (or Arch-based distribution)
@@ -62,6 +76,21 @@ Run individual modules as needed:
 ./install.sh --dotfiles    # Deploy dotfiles only
 ./install.sh --packages    # Install packages only
 ./install.sh --skip-nvidia # Full install, skip Nvidia
+./install.sh --dev-tools   # Developer tools only
+```
+
+### Developer Tools Install
+
+```bash
+# Install all developer tools
+./install.sh --dev-tools
+
+# Or run individual dev tool modules
+./scripts/dev/install-mise.sh           # mise runtime manager
+./scripts/dev/install-languages.sh      # Java, Node, Python, Go, Rust
+./scripts/dev/install-databases.sh      # PostgreSQL, Redis
+./scripts/dev/install-containers.sh     # Docker, docker-compose
+./scripts/dev/install-build-tools.sh    # Gradle, Maven
 ```
 
 ### Configuration File (`config.sh`)
@@ -72,6 +101,7 @@ Edit before installation to customize:
 # ── Installation Options ──
 INSTALL_NVIDIA=true           # Install Nvidia drivers
 INSTALL_SDDM_THEME=true       # Install SDDM theme
+INSTALL_DEV_TOOLS=false       # Install developer tools
 BACKUP_EXISTING=true          # Backup existing configs
 
 # ── AUR Helper ──
@@ -87,6 +117,19 @@ EDITOR="code"
 GTK_THEME="catppuccin-mocha-blue"
 ICON_THEME="Papirus-Dark"
 CURSOR_THEME="Bibata-Modern-Ice"
+
+# ── Developer Tools (when INSTALL_DEV_TOOLS=true) ──
+INSTALL_MISE=true             # mise runtime manager
+INSTALL_DOCKER=true           # Docker & docker-compose
+INSTALL_POSTGRES=true         # PostgreSQL database
+INSTALL_REDIS=false           # Redis in-memory store
+
+# Languages to install via mise
+MISE_LANGUAGES=("java@21" "node@lts" "python@3.12" "go@latest")
+
+# Build tools
+INSTALL_GRADLE=true
+INSTALL_MAVEN=true
 ```
 
 ## Project Structure
@@ -106,7 +149,13 @@ hyprland-bootstrap/
 │   ├── 07-sddm.sh          # SDDM theme & configuration
 │   ├── 08-rofi.sh          # Rofi theme installation (adi1090x)
 │   ├── 09-gtk-qt.sh        # GTK/Qt theming setup
-│   └── 10-post-install.sh  # Final cleanup & instructions
+│   ├── 10-post-install.sh  # Final cleanup & instructions
+│   └── dev/                # Developer tools (optional)
+│       ├── install-mise.sh         # mise runtime manager
+│       ├── install-languages.sh    # Programming languages
+│       ├── install-databases.sh    # PostgreSQL, Redis
+│       ├── install-containers.sh   # Docker setup
+│       └── install-build-tools.sh  # Gradle, Maven, etc.
 ├── lib/                    # Shared functions
 │   ├── colors.sh           # Terminal colors & formatting
 │   ├── utils.sh            # Helper functions (logging, prompts)
@@ -293,6 +342,31 @@ GTK themes can be configured using `nwg-look` or by editing `~/.config/gtk-3.0/s
 - ttf-jetbrains-mono-nerd
 - papirus-icon-theme
 - catppuccin-gtk-theme (AUR)
+
+### Developer Tools (Optional)
+
+#### Runtime Manager
+- mise (polyglot runtime manager)
+
+#### Languages (via mise)
+- java (OpenJDK 21 LTS)
+- node (LTS) + npm/pnpm
+- python + pip
+- go
+- rust (via rustup)
+
+#### Databases
+- postgresql, postgresql-libs
+- redis
+
+#### Containers
+- docker, docker-compose
+- docker-buildx
+
+#### Build Tools
+- gradle
+- maven
+- make, cmake
 
 ## Nvidia Setup
 
