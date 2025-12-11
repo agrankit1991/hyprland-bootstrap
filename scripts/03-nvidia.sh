@@ -19,27 +19,27 @@ source "$SCRIPT_DIR/../config.sh" 2>/dev/null || true
 
 # Standard DKMS driver (works with all Nvidia GPUs)
 NVIDIA_PACKAGES_DKMS=(
-    nvidia-dkms
-    nvidia-utils
-    lib32-nvidia-utils
-    nvidia-settings
-    egl-wayland
-    libva-nvidia-driver
+    nvidia-dkms           # Nvidia kernel module (DKMS version)
+    nvidia-utils          # Nvidia driver utilities and libraries
+    lib32-nvidia-utils    # 32-bit Nvidia libraries for compatibility
+    nvidia-settings       # Nvidia control panel GUI
+    egl-wayland           # EGL implementation for Wayland
+    libva-nvidia-driver   # VA-API support for hardware video acceleration
 )
 
-# Open kernel modules (Turing, Ampere, Ada Lovelace, and newer)
+# Open kernel modules (Ampere, Ada Lovelace, and newer)
 NVIDIA_PACKAGES_OPEN=(
-    nvidia-open-dkms
-    nvidia-utils
-    lib32-nvidia-utils
-    nvidia-settings
-    egl-wayland
-    libva-nvidia-driver
+    nvidia-open-dkms      # Open-source Nvidia kernel modules (RTX 30xx+)
+    nvidia-utils          # Nvidia driver utilities and libraries
+    lib32-nvidia-utils    # 32-bit Nvidia libraries for compatibility
+    nvidia-settings       # Nvidia control panel GUI
+    egl-wayland           # EGL implementation for Wayland
+    libva-nvidia-driver   # VA-API support for hardware video acceleration
 )
 
 # Required kernel headers
 NVIDIA_KERNEL_HEADERS=(
-    linux-headers
+    linux-headers         # Kernel headers for building Nvidia DKMS modules
 )
 
 # ── Detection Functions ──────────────────────────────────────────────────────
@@ -50,16 +50,16 @@ has_nvidia_gpu() {
 }
 
 # Detect GPU generation for driver selection
-# Returns: "turing_plus" for GTX 16xx/RTX or "legacy" for older
+# Returns: "ampere_plus" for RTX 30xx+ or "legacy" for older (including RTX 1660 TI)
 detect_nvidia_generation() {
     local gpu_info
     gpu_info=$(lspci | grep -i "nvidia" | head -1)
     
-    # Check for Turing+ architectures (GTX 16xx, RTX 20xx, 30xx, 40xx, 50xx)
-    if echo "$gpu_info" | grep -qiE "(RTX|GTX 16[0-9]{2}|RTX [2-5]0[0-9]{2}|RTX [2-5]0[0-9]{2})"; then
-        echo "turing_plus"
+    # Only recommend open drivers for RTX 30xx+ (Ampere and newer)
+    if echo "$gpu_info" | grep -qiE "RTX [3-5]0[0-9]{2}"; then
+        echo "ampere_plus"
     else
-        echo "legacy"
+        echo "legacy"  # Everything else including RTX 1660 TI, RTX 20xx
     fi
 }
 
@@ -129,6 +129,15 @@ configure_modprobe() {
     
     local modprobe_conf="/etc/modprobe.d/nvidia.conf"
     
+    # Check if any nvidia modprobe config already exists
+    if ls /etc/modprobe.d/nvidia*.conf &>/dev/null; then
+        log_substep "Existing Nvidia modprobe config found"
+        if grep -r "nvidia_drm.*modeset=1" /etc/modprobe.d/ &>/dev/null; then
+            log_substep "DRM modeset already configured"
+            return 0
+        fi
+    fi
+    
     # Create nvidia modprobe config
     echo "options nvidia_drm modeset=1" | sudo tee "$modprobe_conf" > /dev/null
     echo "options nvidia_drm fbdev=1" | sudo tee -a "$modprobe_conf" > /dev/null
@@ -141,6 +150,18 @@ configure_pacman_hook() {
     
     local hook_dir="/etc/pacman.d/hooks"
     local hook_file="$hook_dir/nvidia.hook"
+    
+    # Check if hook already exists
+    if [[ -f "$hook_file" ]]; then
+        log_substep "Nvidia pacman hook already exists"
+        return 0
+    fi
+    
+    # Check for other nvidia hooks
+    if ls "$hook_dir"/nvidia*.hook &>/dev/null; then
+        log_substep "Other Nvidia hooks found, skipping hook creation"
+        return 0
+    fi
     
     sudo mkdir -p "$hook_dir"
     
@@ -172,12 +193,23 @@ EOF
 enable_nvidia_services() {
     log_step "Enabling Nvidia power management services..."
     
-    # Enable suspend/resume services for proper power management
-    enable_service nvidia-suspend.service
-    enable_service nvidia-hibernate.service
-    enable_service nvidia-resume.service
+    local services=("nvidia-suspend.service" "nvidia-hibernate.service" "nvidia-resume.service")
+    local enabled_count=0
     
-    log_success "Nvidia services enabled"
+    for service in "${services[@]}"; do
+        if systemctl is-enabled "$service" &>/dev/null; then
+            log_substep "$service already enabled"
+            ((enabled_count++))
+        else
+            enable_service "$service"
+        fi
+    done
+    
+    if [[ $enabled_count -eq ${#services[@]} ]]; then
+        log_success "All Nvidia services already enabled"
+    else
+        log_success "Nvidia services configured"
+    fi
 }
 
 create_hypr_nvidia_config() {
@@ -243,15 +275,15 @@ install_nvidia() {
     local driver_type="${NVIDIA_DRIVER_TYPE:-}"
     
     if [[ -z "$driver_type" ]]; then
-        if [[ "$generation" == "turing_plus" ]]; then
-            log_info "Turing+ GPU detected - nvidia-open-dkms recommended"
-            if confirm "Use nvidia-open-dkms (recommended for Turing+ GPUs)?" "y"; then
+        if [[ "$generation" == "ampere_plus" ]]; then
+            log_info "RTX 30xx+ GPU detected - nvidia-open-dkms recommended"
+            if confirm "Use nvidia-open-dkms (recommended for RTX 30xx+ GPUs)?" "y"; then
                 driver_type="open-dkms"
             else
                 driver_type="dkms"
             fi
         else
-            log_info "Legacy GPU detected - using nvidia-dkms"
+            log_info "Using nvidia-dkms (recommended for RTX 1660 TI and older)"
             driver_type="dkms"
         fi
     fi

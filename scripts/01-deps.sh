@@ -27,24 +27,7 @@ BASE_DEPS=(
 
 install_base_deps() {
     log_step "Installing base dependencies..."
-    
-    local to_install=()
-    
-    for dep in "${BASE_DEPS[@]}"; do
-        if is_installed "$dep"; then
-            log_substep "$dep already installed"
-        else
-            to_install+=("$dep")
-        fi
-    done
-    
-    if [[ ${#to_install[@]} -gt 0 ]]; then
-        log_info "Installing: ${to_install[*]}"
-        sudo pacman -S --noconfirm --needed "${to_install[@]}"
-        log_success "Base dependencies installed"
-    else
-        log_success "All base dependencies already present"
-    fi
+    install_pacman "${BASE_DEPS[@]}"
 }
 
 install_yay() {
