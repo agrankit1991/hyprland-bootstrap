@@ -31,7 +31,6 @@ PACKAGES_HYPR_ECOSYSTEM=(
     hypridle          # Idle daemon (auto-lock, screen off, suspend)
     hyprpaper         # Fast wallpaper utility
     hyprshot          # Screenshot tool (region, window, monitor)
-    hyprpicker        # Color picker
     hyprsunset        # Blue light filter
     hyprpolkitagent   # Polkit authentication popups
 )
@@ -53,61 +52,72 @@ PACKAGES_CORE=(
 # Audio (PipeWire)
 PACKAGES_AUDIO=(
     pipewire          # Modern audio/video server (replaces PulseAudio)
-    pipewire-alsa     # ALSA compatibility layer
     pipewire-pulse    # PulseAudio compatibility layer
-    pipewire-jack     # JACK compatibility for pro audio apps
     wireplumber       # Session manager for PipeWire
-    pamixer           # CLI volume control
-    playerctl         # CLI media player control (play, pause, next)
 )
 
 # System utilities
 PACKAGES_SYSTEM=(
+    sddm              # Simple Desktop Display Manager (login screen)
     polkit-gnome      # Graphical authentication agent for sudo prompts
     gnome-keyring     # Secure password/secret storage
     network-manager-applet  # System tray network manager
-    bluez             # Bluetooth protocol stack
-    bluez-utils       # Bluetooth CLI utilities (bluetoothctl)
-    blueman           # GTK Bluetooth manager
-    brightnessctl     # Screen brightness control
     udiskie           # Auto-mount removable drives
     gvfs              # Virtual filesystem (trash, network mounts)
-    gvfs-mtp          # MTP support for Android devices
     tumbler           # Thumbnail generator for file managers
     ffmpegthumbnailer # Video thumbnail generator
 )
 
 # Fonts
 PACKAGES_FONTS=(
-    ttf-jetbrains-mono-nerd  # JetBrains Mono with Nerd Font icons
-    ttf-font-awesome         # Icon font used by Waybar
-    noto-fonts               # Google Noto fonts (wide language support)
-    noto-fonts-emoji         # Emoji font
-    noto-fonts-cjk           # Chinese, Japanese, Korean fonts
+    ttf-jetbrains-mono-nerd  # JetBrains Mono with Nerd Font icons (Starship compatible)
+    noto-fonts               # Google Noto fonts (wide language support, including basic Devanagari/Hindi)
+    noto-fonts-emoji         # Emoji font support
+    noto-fonts-extra         # Extended scripts (Tamil, Telugu, Gujarati, etc.)
 )
 
-# Theming
+# Theming (Essential tools only - themes installed separately)
 PACKAGES_THEMING=(
-    papirus-icon-theme  # Modern icon theme
     qt5ct               # Qt5 theme configuration tool
     qt6ct               # Qt6 theme configuration tool
-    kvantum             # SVG-based theme engine for Qt
     nwg-look            # GTK theme/icon/cursor configurator
 )
 
 # CLI tools
 PACKAGES_CLI=(
+    # Text editors
     neovim      # Modern vim-based text editor
-    btop        # Beautiful system monitor
+    
+    # System monitoring
+    btop        # Beautiful system monitor (better than htop)
+    htop        # Interactive process viewer
     fastfetch   # Fast system info display
+    
+    # File management & archives
     unzip       # ZIP archive extraction
     p7zip       # 7-Zip archive support
+    
+    # Better core utilities
     ripgrep     # Fast grep alternative (rg)
     fd          # Fast find alternative
-    fzf         # Fuzzy finder
-    jq          # JSON processor
+    bat         # Better cat with syntax highlighting
+    eza         # Better ls with colors and icons
+    zoxide      # Smart cd that learns your habits
+    
+    # Disk & filesystem
+    duf         # Better df for disk usage display
+    ncdu        # Interactive disk usage analyzer
     tree        # Directory tree viewer
+    
+    # Search & navigation
+    fzf         # Fuzzy finder
+    
+    # Documentation & help
+    tldr        # Simplified man pages
     man-db      # Manual pages
+    
+    # Data processing
+    jq          # JSON processor
 )
 
 # ── Installation Functions ───────────────────────────────────────────────────

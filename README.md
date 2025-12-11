@@ -20,7 +20,6 @@ This project provides an automated way to set up a fully functional Hyprland-bas
 - **Hypridle** - Idle management daemon (screen timeout, auto-lock, suspend)
 - **Hyprsunset** - Blue light filter with time-based profiles
 - **Hyprshot** - Screenshot utility (window, region, monitor)
-- **Hyprpicker** - Color picker utility
 - **Hyprpolkitagent** - Polkit authentication agent
 
 ### Utilities
@@ -152,16 +151,15 @@ hyprland-bootstrap/
 ├── config.sh               # User configuration (edit before install)
 ├── scripts/                # Modular installation scripts
 │   ├── 00-checks.sh        # Pre-flight checks (arch, internet, user)
-│   ├── 01-packages.sh      # Core package installation
-│   ├── 02-aur.sh           # AUR helper & AUR packages
+│   ├── 01-deps.sh          # Base dependencies & yay AUR helper
+│   ├── 02-packages.sh      # Core package installation
 │   ├── 03-nvidia.sh        # Nvidia driver setup
-│   ├── 04-hyprland.sh      # Hyprland & ecosystem packages
-│   ├── 05-dotfiles.sh      # Dotfile deployment & backup
-│   ├── 06-services.sh      # Enable systemd services
-│   ├── 07-sddm.sh          # SDDM theme & configuration
-│   ├── 08-rofi.sh          # Rofi theme installation (adi1090x)
-│   ├── 09-gtk-qt.sh        # GTK/Qt theming setup
-│   ├── 10-post-install.sh  # Final cleanup & instructions
+│   ├── 04-dotfiles.sh      # Dotfile deployment & backup
+│   ├── 05-services.sh      # Enable systemd services
+│   ├── 06-sddm.sh          # SDDM theme & configuration
+│   ├── 07-rofi.sh          # Rofi theme installation (adi1090x)
+│   ├── 08-gtk-qt.sh        # GTK/Qt theming setup
+│   ├── 09-post-install.sh  # Final cleanup & instructions
 │   ├── dev/                # Developer tools (optional)
 │   │   ├── install-mise.sh         # mise runtime manager
 │   │   ├── install-languages.sh    # Programming languages
@@ -346,7 +344,7 @@ GTK themes can be configured using `nwg-look` or by editing `~/.config/gtk-3.0/s
 
 ### Hypr Ecosystem
 - hyprlock, hypridle, hyprsunset
-- hyprshot, hyprpicker, hyprpolkitagent
+- hyprshot, hyprpolkitagent
 
 ### Utilities
 - swww (wallpaper)
