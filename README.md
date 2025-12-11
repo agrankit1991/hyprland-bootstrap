@@ -68,7 +68,8 @@ hyprland-bootstrap/
 │   │   │   ├── windowrules.conf
 │   │   │   ├── animations.conf
 │   │   │   ├── input.conf
-│   │   │   └── appearance.conf
+│   │   │   ├── appearance.conf
+│   │   │   └── nvidia.conf      # Nvidia environment variables
 │   │   ├── hyprlock.conf
 │   │   ├── hypridle.conf
 │   │   └── hyprsunset.conf
@@ -99,7 +100,8 @@ After installation, configuration files are located at:
 │   ├── windowrules.conf    # Window rules & layers
 │   ├── animations.conf     # Animations & bezier curves
 │   ├── input.conf          # Keyboard, mouse, touchpad
-│   └── appearance.conf     # Gaps, borders, colors
+│   ├── appearance.conf     # Gaps, borders, colors
+│   └── nvidia.conf         # Nvidia GPU environment variables
 ├── hyprlock.conf
 ├── hypridle.conf
 └── hyprsunset.conf         # Blue light filter profiles
@@ -166,6 +168,12 @@ GTK themes can be configured using `nwg-look` or by editing `~/.config/gtk-3.0/s
 - kitty, nautilus
 - sddm
 
+### Nvidia Drivers
+- nvidia-dkms (or nvidia-open-dkms for Turing+)
+- nvidia-utils, lib32-nvidia-utils
+- egl-wayland
+- libva-nvidia-driver (VA-API hardware acceleration)
+
 ### Hypr Ecosystem
 - hyprlock, hypridle, hyprsunset
 - hyprshot, hyprpicker, hyprpolkitagent
@@ -181,6 +189,57 @@ GTK themes can be configured using `nwg-look` or by editing `~/.config/gtk-3.0/s
 - ttf-jetbrains-mono-nerd
 - papirus-icon-theme
 - catppuccin-gtk-theme (AUR)
+
+## Nvidia Setup
+
+The install script automatically configures Nvidia proprietary drivers for Hyprland.
+
+### What Gets Configured
+
+1. **Driver Installation**
+   - `nvidia-dkms` (or `nvidia-open-dkms` for Turing/Ampere/Ada+)
+   - `nvidia-utils`, `lib32-nvidia-utils`
+   - `egl-wayland`, `libva-nvidia-driver`
+
+2. **Kernel Modules** (`/etc/mkinitcpio.conf`)
+   ```
+   MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)
+   ```
+
+3. **DRM Modeset** (`/etc/modprobe.d/nvidia.conf`)
+   ```
+   options nvidia_drm modeset=1
+   ```
+
+4. **Environment Variables** (`~/.config/hypr/configs/nvidia.conf`)
+   ```bash
+   env = LIBVA_DRIVER_NAME,nvidia
+   env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+   env = NVD_BACKEND,direct
+   
+   # Electron/Chromium Wayland support
+   env = ELECTRON_OZONE_PLATFORM_HINT,auto
+   ```
+
+### Verify Installation
+
+```bash
+# Check DRM modeset is enabled
+cat /sys/module/nvidia_drm/parameters/modeset
+# Should return: Y
+
+# Check driver version
+nvidia-smi
+```
+
+### Nvidia Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| Flickering in Electron apps | Add `--enable-features=WaylandLinuxDrmSyncobj` flag |
+| Screen tearing | Ensure `nvidia_drm modeset=1` is set |
+| Suspend/resume issues | Enable `nvidia-suspend.service`, `nvidia-hibernate.service`, `nvidia-resume.service` |
+| Multi-monitor issues | Try `AQ_DRM_DEVICES` to set primary GPU |
 
 ## Troubleshooting
 
