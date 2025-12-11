@@ -58,6 +58,7 @@ show_help() {
     echo "  --skip-nvidia   Full install, skip Nvidia drivers"
     echo "  --packages      Install core packages only"
     echo "  --dotfiles      Deploy dotfiles only"
+    echo "  --services      Enable system services only"
     echo "  --dev-tools     Install developer tools only"
     echo "  --security      Install security essentials only"
     echo ""
@@ -137,8 +138,11 @@ show_custom_menu() {
     # Deploy dotfiles if selected
     [[ "$run_dotfiles" == true ]] && source "$SCRIPT_DIR/scripts/04-dotfiles.sh" && main
     
+    # Enable services if selected  
+    [[ "$run_services" == true ]] && source "$SCRIPT_DIR/scripts/05-services.sh" && run_services_install
+    
     # TODO: Add remaining components when scripts are created
-    # [[ "$run_services" == true ]] && source "$SCRIPT_DIR/scripts/05-services.sh" && enable_services
+    # [[ "$run_sddm" == true ]] && source "$SCRIPT_DIR/scripts/06-sddm.sh" && configure_sddm
     # [[ "$run_sddm" == true ]] && source "$SCRIPT_DIR/scripts/06-sddm.sh" && configure_sddm
     
     exit 0
@@ -167,8 +171,12 @@ run_full_install() {
     source "$SCRIPT_DIR/scripts/04-dotfiles.sh"
     main
     
+    # Enable services
+    source "$SCRIPT_DIR/scripts/05-services.sh"
+    run_services_install
+    
     # TODO: Add remaining installation steps
-    # source "$SCRIPT_DIR/scripts/05-services.sh"
+    # source "$SCRIPT_DIR/scripts/06-sddm.sh"
     # source "$SCRIPT_DIR/scripts/06-sddm.sh"
     # source "$SCRIPT_DIR/scripts/07-rofi.sh"
     # source "$SCRIPT_DIR/scripts/08-gtk-qt.sh"
@@ -231,6 +239,11 @@ parse_args() {
             --dotfiles)
                 source "$SCRIPT_DIR/scripts/04-dotfiles.sh"
                 main
+                exit 0
+                ;;
+            --services)
+                source "$SCRIPT_DIR/scripts/05-services.sh"
+                run_services_install
                 exit 0
                 ;;
             --dev-tools)
