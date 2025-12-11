@@ -1,4 +1,4 @@
-# Hyprland Bootstrap
+# Hyprland Bootstrap (WIP)
 
 A comprehensive setup script for configuring Hyprland and essential applications to create a complete, polished desktop environment on Arch Linux.
 
