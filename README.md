@@ -37,27 +37,80 @@ This project provides an automated way to set up a fully functional Hyprland-bas
 
 ## Installation
 
+### Quick Install (Full)
+
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/hyprland-bootstrap.git
 cd hyprland-bootstrap
 
-# Make the install script executable
-chmod +x install.sh
+# Edit configuration (optional but recommended)
+nvim config.sh
 
 # Run the installation
+chmod +x install.sh
 ./install.sh
+```
+
+### Selective Install
+
+Run individual modules as needed:
+
+```bash
+# Install only specific components
+./install.sh --nvidia      # Nvidia drivers only
+./install.sh --dotfiles    # Deploy dotfiles only
+./install.sh --packages    # Install packages only
+./install.sh --skip-nvidia # Full install, skip Nvidia
+```
+
+### Configuration File (`config.sh`)
+
+Edit before installation to customize:
+
+```bash
+# ── Installation Options ──
+INSTALL_NVIDIA=true           # Install Nvidia drivers
+INSTALL_SDDM_THEME=true       # Install SDDM theme
+BACKUP_EXISTING=true          # Backup existing configs
+
+# ── AUR Helper ──
+AUR_HELPER="yay"              # yay | paru
+
+# ── Default Applications ──
+TERMINAL="kitty"
+BROWSER="brave"
+FILE_MANAGER="nautilus"
+EDITOR="code"
+
+# ── Theme ──
+GTK_THEME="catppuccin-mocha-blue"
+ICON_THEME="Papirus-Dark"
+CURSOR_THEME="Bibata-Modern-Ice"
 ```
 
 ## Project Structure
 
 ```
 hyprland-bootstrap/
-├── install.sh              # Main installation script
-├── scripts/                # Helper scripts
-│   ├── packages.sh         # Package installation
-│   ├── dotfiles.sh         # Dotfile deployment
-│   └── post-install.sh     # Post-installation tasks
+├── install.sh              # Main installation script (interactive menu)
+├── config.sh               # User configuration (edit before install)
+├── scripts/                # Modular installation scripts
+│   ├── 00-checks.sh        # Pre-flight checks (arch, internet, user)
+│   ├── 01-packages.sh      # Core package installation
+│   ├── 02-aur.sh           # AUR helper & AUR packages
+│   ├── 03-nvidia.sh        # Nvidia driver setup
+│   ├── 04-hyprland.sh      # Hyprland & ecosystem packages
+│   ├── 05-dotfiles.sh      # Dotfile deployment & backup
+│   ├── 06-services.sh      # Enable systemd services
+│   ├── 07-sddm.sh          # SDDM theme & configuration
+│   ├── 08-rofi.sh          # Rofi theme installation (adi1090x)
+│   ├── 09-gtk-qt.sh        # GTK/Qt theming setup
+│   └── 10-post-install.sh  # Final cleanup & instructions
+├── lib/                    # Shared functions
+│   ├── colors.sh           # Terminal colors & formatting
+│   ├── utils.sh            # Helper functions (logging, prompts)
+│   └── packages.sh         # Package lists & install functions
 ├── dotfiles/               # Configuration files
 │   ├── hypr/               # Hyprland configs (modular)
 │   │   ├── hyprland.conf   # Main config (sources other files)
