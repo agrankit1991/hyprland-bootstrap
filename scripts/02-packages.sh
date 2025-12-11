@@ -59,7 +59,6 @@ PACKAGES_AUDIO=(
 # System utilities
 PACKAGES_SYSTEM=(
     sddm              # Simple Desktop Display Manager (login screen)
-    polkit-gnome      # Graphical authentication agent for sudo prompts
     gnome-keyring     # Secure password/secret storage
     network-manager-applet  # System tray network manager
     udiskie           # Auto-mount removable drives
