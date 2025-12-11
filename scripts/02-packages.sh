@@ -18,92 +18,96 @@ source "$SCRIPT_DIR/../lib/utils.sh"
 
 # Hyprland and core Wayland packages
 PACKAGES_HYPRLAND=(
-    hyprland
-    xdg-desktop-portal-hyprland
-    xdg-desktop-portal-gtk
-    qt5-wayland
-    qt6-wayland
+    hyprland                    # Dynamic tiling Wayland compositor
+    xdg-desktop-portal-hyprland # Screen sharing & file picker for Hyprland
+    xdg-desktop-portal-gtk      # GTK file picker dialogs
+    qt5-wayland                 # Qt5 Wayland integration
+    qt6-wayland                 # Qt6 Wayland integration
 )
 
 # Hypr ecosystem tools
 PACKAGES_HYPR_ECOSYSTEM=(
-    hyprlock
-    hypridle
-    hyprpaper
+    hyprlock          # GPU-accelerated screen locker
+    hypridle          # Idle daemon (auto-lock, screen off, suspend)
+    hyprpaper         # Fast wallpaper utility
+    hyprshot          # Screenshot tool (region, window, monitor)
+    hyprpicker        # Color picker
+    hyprsunset        # Blue light filter
+    hyprpolkitagent   # Polkit authentication popups
 )
 
 # Core utilities
 PACKAGES_CORE=(
-    waybar
-    rofi-wayland
-    kitty
-    nautilus
-    swaync
-    swww
-    wl-clipboard
-    cliphist
-    grim
-    slurp
+    waybar            # Highly customizable status bar
+    rofi-wayland      # Application launcher & dmenu replacement
+    kitty             # GPU-accelerated terminal emulator
+    nautilus          # GTK file manager (GNOME Files)
+    swaync            # Notification center for Wayland
+    swww              # Wallpaper daemon with transitions
+    wl-clipboard      # Wayland clipboard utilities (wl-copy, wl-paste)
+    cliphist          # Clipboard history manager
+    grim              # Screenshot utility for Wayland
+    slurp             # Region selector for screenshots
 )
 
 # Audio (PipeWire)
 PACKAGES_AUDIO=(
-    pipewire
-    pipewire-alsa
-    pipewire-pulse
-    pipewire-jack
-    wireplumber
-    pamixer
-    playerctl
+    pipewire          # Modern audio/video server (replaces PulseAudio)
+    pipewire-alsa     # ALSA compatibility layer
+    pipewire-pulse    # PulseAudio compatibility layer
+    pipewire-jack     # JACK compatibility for pro audio apps
+    wireplumber       # Session manager for PipeWire
+    pamixer           # CLI volume control
+    playerctl         # CLI media player control (play, pause, next)
 )
 
 # System utilities
 PACKAGES_SYSTEM=(
-    polkit-gnome
-    gnome-keyring
-    network-manager-applet
-    bluez
-    bluez-utils
-    blueman
-    brightnessctl
-    udiskie
-    gvfs
-    gvfs-mtp
-    tumbler
-    ffmpegthumbnailer
+    polkit-gnome      # Graphical authentication agent for sudo prompts
+    gnome-keyring     # Secure password/secret storage
+    network-manager-applet  # System tray network manager
+    bluez             # Bluetooth protocol stack
+    bluez-utils       # Bluetooth CLI utilities (bluetoothctl)
+    blueman           # GTK Bluetooth manager
+    brightnessctl     # Screen brightness control
+    udiskie           # Auto-mount removable drives
+    gvfs              # Virtual filesystem (trash, network mounts)
+    gvfs-mtp          # MTP support for Android devices
+    tumbler           # Thumbnail generator for file managers
+    ffmpegthumbnailer # Video thumbnail generator
 )
 
 # Fonts
 PACKAGES_FONTS=(
-    ttf-jetbrains-mono-nerd
-    ttf-font-awesome
-    noto-fonts
-    noto-fonts-emoji
-    noto-fonts-cjk
+    ttf-jetbrains-mono-nerd  # JetBrains Mono with Nerd Font icons
+    ttf-font-awesome         # Icon font used by Waybar
+    noto-fonts               # Google Noto fonts (wide language support)
+    noto-fonts-emoji         # Emoji font
+    noto-fonts-cjk           # Chinese, Japanese, Korean fonts
 )
 
 # Theming
 PACKAGES_THEMING=(
-    papirus-icon-theme
-    qt5ct
-    qt6ct
-    kvantum
-    nwg-look
+    papirus-icon-theme  # Modern icon theme
+    qt5ct               # Qt5 theme configuration tool
+    qt6ct               # Qt6 theme configuration tool
+    kvantum             # SVG-based theme engine for Qt
+    nwg-look            # GTK theme/icon/cursor configurator
 )
 
 # CLI tools
 PACKAGES_CLI=(
-    neovim
-    btop
-    fastfetch
-    unzip
-    p7zip
-    ripgrep
-    fd
-    fzf
-    jq
-    tree
-    man-db
+    neovim      # Modern vim-based text editor
+    btop        # Beautiful system monitor
+    fastfetch   # Fast system info display
+    unzip       # ZIP archive extraction
+    p7zip       # 7-Zip archive support
+    ripgrep     # Fast grep alternative (rg)
+    fd          # Fast find alternative
+    fzf         # Fuzzy finder
+    jq          # JSON processor
+    tree        # Directory tree viewer
+    man-db      # Manual pages
 )
 
 # ── Installation Functions ───────────────────────────────────────────────────

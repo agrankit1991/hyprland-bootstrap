@@ -63,34 +63,7 @@ run_checks() {
         ((failed++))
     fi
     
-    # Check 5: Required base packages
-    log_step "Checking base dependencies..."
-    local base_deps=("base-devel" "git" "curl" "wget")
-    local missing_deps=()
-    
-    for dep in "${base_deps[@]}"; do
-        if is_installed "$dep"; then
-            log_substep "$dep ${CHECKMARK}"
-        else
-            log_substep "$dep ${CROSSMARK} (missing)"
-            missing_deps+=("$dep")
-        fi
-    done
-    
-    if [[ ${#missing_deps[@]} -gt 0 ]]; then
-        log_warning "Missing dependencies: ${missing_deps[*]}"
-        if confirm "Install missing dependencies now?"; then
-            sudo pacman -S --noconfirm --needed "${missing_deps[@]}"
-            log_success "Dependencies installed"
-        else
-            log_error "Cannot continue without required dependencies"
-            ((failed++))
-        fi
-    else
-        log_success "All base dependencies present"
-    fi
-    
-    # Check 6: GPU detection
+    # Check 5: GPU detection
     log_step "Detecting GPU..."
     local gpu_vendor
     gpu_vendor=$(get_gpu_vendor)
@@ -116,7 +89,7 @@ run_checks() {
             ;;
     esac
     
-    # Check 7: Disk space
+    # Check 6: Disk space
     log_step "Checking disk space..."
     local available_gb
     available_gb=$(df -BG / | awk 'NR==2 {print $4}' | sed 's/G//')

@@ -113,15 +113,15 @@ show_custom_menu() {
     echo ""
     
     local run_checks=true
+    local run_deps=false
     local run_packages=false
-    local run_aur=false
     local run_nvidia=false
     local run_dotfiles=false
     local run_services=false
     local run_sddm=false
     
+    confirm "Install base dependencies & yay?" && run_deps=true
     confirm "Install core packages (pacman)?" && run_packages=true
-    confirm "Install AUR packages?" && run_aur=true
     confirm "Install/configure Nvidia drivers?" && run_nvidia=true
     confirm "Deploy dotfiles?" && run_dotfiles=true
     confirm "Enable services?" && run_services=true
@@ -131,14 +131,14 @@ show_custom_menu() {
     
     # Run selected components
     [[ "$run_checks" == true ]] && source "$SCRIPT_DIR/scripts/00-checks.sh" && run_checks
-    [[ "$run_packages" == true ]] && source "$SCRIPT_DIR/scripts/01-packages.sh" && install_all_packages
-    [[ "$run_aur" == true ]] && source "$SCRIPT_DIR/scripts/02-aur.sh" && install_all_aur
+    [[ "$run_deps" == true ]] && source "$SCRIPT_DIR/scripts/01-deps.sh" && run_deps_install
+    [[ "$run_packages" == true ]] && source "$SCRIPT_DIR/scripts/02-packages.sh" && install_all_packages
     [[ "$run_nvidia" == true ]] && source "$SCRIPT_DIR/scripts/03-nvidia.sh" && install_nvidia
     
     # TODO: Add remaining components when scripts are created
-    # [[ "$run_dotfiles" == true ]] && source "$SCRIPT_DIR/scripts/05-dotfiles.sh" && deploy_dotfiles
-    # [[ "$run_services" == true ]] && source "$SCRIPT_DIR/scripts/06-services.sh" && enable_services
-    # [[ "$run_sddm" == true ]] && source "$SCRIPT_DIR/scripts/07-sddm.sh" && configure_sddm
+    # [[ "$run_dotfiles" == true ]] && source "$SCRIPT_DIR/scripts/04-dotfiles.sh" && deploy_dotfiles
+    # [[ "$run_services" == true ]] && source "$SCRIPT_DIR/scripts/05-services.sh" && enable_services
+    # [[ "$run_sddm" == true ]] && source "$SCRIPT_DIR/scripts/06-sddm.sh" && configure_sddm
     
     exit 0
 }
@@ -150,26 +150,25 @@ run_full_install() {
     source "$SCRIPT_DIR/scripts/00-checks.sh"
     run_checks || exit 1
     
-    # Core packages
-    source "$SCRIPT_DIR/scripts/01-packages.sh"
-    run_package_install
+    # Base dependencies & yay
+    source "$SCRIPT_DIR/scripts/01-deps.sh"
+    run_deps_install
     
-    # AUR packages
-    source "$SCRIPT_DIR/scripts/02-aur.sh"
-    run_aur_install
+    # Core packages
+    source "$SCRIPT_DIR/scripts/02-packages.sh"
+    run_package_install
     
     # Nvidia drivers (if applicable)
     source "$SCRIPT_DIR/scripts/03-nvidia.sh"
     run_nvidia_install
     
     # TODO: Add remaining installation steps
-    # source "$SCRIPT_DIR/scripts/04-hyprland.sh"
-    # source "$SCRIPT_DIR/scripts/05-dotfiles.sh"
-    # source "$SCRIPT_DIR/scripts/06-services.sh"
-    # source "$SCRIPT_DIR/scripts/07-sddm.sh"
-    # source "$SCRIPT_DIR/scripts/08-rofi.sh"
-    # source "$SCRIPT_DIR/scripts/09-gtk-qt.sh"
-    # source "$SCRIPT_DIR/scripts/10-post-install.sh"
+    # source "$SCRIPT_DIR/scripts/04-dotfiles.sh"
+    # source "$SCRIPT_DIR/scripts/05-services.sh"
+    # source "$SCRIPT_DIR/scripts/06-sddm.sh"
+    # source "$SCRIPT_DIR/scripts/07-rofi.sh"
+    # source "$SCRIPT_DIR/scripts/08-gtk-qt.sh"
+    # source "$SCRIPT_DIR/scripts/09-post-install.sh"
     
     # Final message
     print_header "Installation Complete!"
