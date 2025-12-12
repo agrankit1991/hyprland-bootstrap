@@ -58,6 +58,7 @@ PACKAGES_SYSTEM=(
     gvfs              # Virtual filesystem (trash, network mounts)
     tumbler           # Thumbnail generator for file managers
     ffmpegthumbnailer # Video thumbnail generator
+    reflector         # Arch Linux mirror list updater
 )
 
 # Fonts
@@ -81,13 +82,11 @@ PACKAGES_CLI=(
     
     # System monitoring
     btop        # Beautiful system monitor (better than htop)
-    htop        # Interactive process viewer
     fastfetch   # Fast system info display
     
     # File management & archives
     unzip       # ZIP archive extraction
-    p7zip       # 7-Zip archive support
-    
+        
     # Better core utilities
     ripgrep     # Fast grep alternative (rg)
     fd          # Fast find alternative
