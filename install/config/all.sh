@@ -13,6 +13,7 @@ source "$SCRIPT_DIR/lib/colors.sh"
 source "$SCRIPT_DIR/lib/utils.sh"
 source "$SCRIPT_DIR/install/config/git.sh"
 source "$SCRIPT_DIR/install/config/gpg.sh"
+source "$SCRIPT_DIR/install/config/fast-shutdown.sh"
 
 # ── Main Configuration ───────────────────────────────────────────────────────
 
@@ -24,6 +25,9 @@ configure_all() {
     
     # Configure Git
     configure_git
+    
+    # Configure fast systemd shutdown
+    configure_fast_shutdown
     
     # Future: Additional configuration scripts can be added here
     # e.g., shell configuration, terminal configuration, etc.

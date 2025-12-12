@@ -1,0 +1,1 @@
+# TODO: Implement MIME types configuration
