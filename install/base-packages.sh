@@ -59,6 +59,7 @@ PACKAGES_SYSTEM=(
     tumbler           # Thumbnail generator for file managers
     ffmpegthumbnailer # Video thumbnail generator
     reflector         # Arch Linux mirror list updater
+    git               # Version control system
 )
 
 # Fonts
