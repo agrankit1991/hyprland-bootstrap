@@ -64,6 +64,7 @@ PACKAGES_SYSTEM=(
     fcitx5-gtk        # Fcitx5 GTK module
     fcitx5-qt         # Fcitx5 Qt module
     fcitx5-configtool # Fcitx5 configuration tool
+    uwsm              # Universal Wayland session manager
 )
 
 # Fonts
