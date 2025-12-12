@@ -14,6 +14,7 @@ source "$SCRIPT_DIR/lib/utils.sh"
 source "$SCRIPT_DIR/install/config/git.sh"
 source "$SCRIPT_DIR/install/config/gpg.sh"
 source "$SCRIPT_DIR/install/config/fast-shutdown.sh"
+source "$SCRIPT_DIR/install/config/hardware/network.sh"
 
 # ── Main Configuration ───────────────────────────────────────────────────────
 
@@ -28,6 +29,9 @@ configure_all() {
     
     # Configure fast systemd shutdown
     configure_fast_shutdown
+    
+    # Configure network hardware
+    configure_network_hardware
     
     # Future: Additional configuration scripts can be added here
     # e.g., shell configuration, terminal configuration, etc.
