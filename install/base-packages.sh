@@ -72,6 +72,7 @@ PACKAGES_FONTS=(
     noto-fonts               # Google Noto fonts (wide language support, including basic Devanagari/Hindi)
     noto-fonts-emoji         # Emoji font support
     noto-fonts-extra         # Extended scripts (Tamil, Telugu, Gujarati, etc.)
+    ttf-liberation           # REQUIRED to match fonts.conf file
 )
 
 # Theming (Essential tools only - themes installed separately)
