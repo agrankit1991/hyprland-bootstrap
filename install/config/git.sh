@@ -11,10 +11,7 @@ set -e
 # Source required files
 source "$SCRIPT_DIR/lib/colors.sh"
 source "$SCRIPT_DIR/lib/utils.sh"
-
-# ── Default Configuration ────────────────────────────────────────────────────
-
-GIT_DEFAULT_BRANCH="master"
+source "$SCRIPT_DIR/install/defaults.sh"
 
 # ── Configuration Functions ──────────────────────────────────────────────────
 
@@ -48,8 +45,8 @@ configure_git_defaults() {
     log_substep "Default branch: $GIT_DEFAULT_BRANCH"
     
     # Editor
-    git config --global core.editor "nvim"
-    log_substep "Editor: nvim"
+    git config --global core.editor "$EDITOR"
+    log_substep "Editor: $EDITOR"
     
     # Line endings for Linux
     git config --global core.autocrlf input
