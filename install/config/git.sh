@@ -83,7 +83,7 @@ configure_global_gitignore() {
     log_step "Configuring global .gitignore..."
     
     mkdir -p ~/.config/git
-    cp "$SCRIPT_DIR/config/.gitignore" ~/.config/git/ignore
+    cp "$SCRIPT_DIR/config/git/.gitignore" ~/.config/git/ignore
     git config --global core.excludesfile ~/.config/git/ignore
     log_substep "Created ~/.config/git/ignore"
 }
@@ -92,7 +92,7 @@ configure_commit_template() {
     log_step "Configuring commit message template..."
     
     mkdir -p ~/.config/git
-    cp "$SCRIPT_DIR/config/.gitmessage" ~/.config/git/message
+    cp "$SCRIPT_DIR/config/git/.gitmessage" ~/.config/git/message
     git config --global commit.template ~/.config/git/message
     log_substep "Created ~/.config/git/message"
 }
