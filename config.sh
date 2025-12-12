@@ -39,11 +39,6 @@ EDITOR="code"
 
 # ── Theme Configuration ──────────────────────────────────────────────────────
 
-GTK_THEME="catppuccin-mocha-blue"
-ICON_THEME="Papirus-Dark"
-CURSOR_THEME="Bibata-Modern-Ice"
-CURSOR_SIZE=24
-
 # ── Wallpaper ────────────────────────────────────────────────────────────────
 
 # Default wallpaper (relative to dotfiles/wallpapers or absolute path)

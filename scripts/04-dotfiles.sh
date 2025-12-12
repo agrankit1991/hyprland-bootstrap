@@ -42,10 +42,6 @@ declare -A DOTFILE_MAPPINGS=(
     # Kitty terminal
     ["kitty"]="$HOME/.config/kitty"
     
-    # GTK configuration
-    ["gtk-3.0"]="$HOME/.config/gtk-3.0"
-    ["gtk-4.0"]="$HOME/.config/gtk-4.0"
-    
     # Wallpapers
     ["wallpapers"]="$HOME/.config/hypr/wallpapers"
     
@@ -93,8 +89,6 @@ create_config_directories() {
         "$HOME/.config/rofi"
         "$HOME/.config/swaync"
         "$HOME/.config/kitty"
-        "$HOME/.config/gtk-3.0"
-        "$HOME/.config/gtk-4.0"
     )
     
     for dir in "${dirs[@]}"; do

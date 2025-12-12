@@ -28,8 +28,6 @@ dotfiles/
 │   └── kitty.conf         # Terminal configuration
 ├── rofi/                  # Application launcher (will be populated by scripts)
 ├── swaync/                # Notification center (will be populated by scripts)
-├── gtk-3.0/               # GTK3 theming (will be populated by scripts)
-├── gtk-4.0/               # GTK4 theming (will be populated by scripts)
 ├── wallpapers/            # Default wallpapers
 ├── scripts/               # Utility scripts (will be populated by scripts)
 └── README.md              # This file

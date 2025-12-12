@@ -78,7 +78,6 @@ PACKAGES_FONTS=(
 PACKAGES_THEMING=(
     qt5ct               # Qt5 theme configuration tool
     qt6ct               # Qt6 theme configuration tool
-    nwg-look            # GTK theme/icon/cursor configurator
 )
 
 # CLI tools

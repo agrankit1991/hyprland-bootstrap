@@ -137,12 +137,6 @@ BROWSER="brave"
 FILE_MANAGER="nautilus"
 EDITOR="code"
 
-# ── Theme ──
-GTK_THEME="catppuccin-mocha-blue"
-ICON_THEME="Papirus-Dark"
-CURSOR_THEME="Bibata-Modern-Ice"
-```
-
 ## Project Structure
 
 ```
@@ -158,8 +152,7 @@ hyprland-bootstrap/
 │   ├── 05-services.sh      # Enable systemd services
 │   ├── 06-sddm.sh          # SDDM theme & configuration
 │   ├── 07-rofi.sh          # Rofi theme installation (adi1090x)
-│   ├── 08-gtk-qt.sh        # GTK/Qt theming setup
-│   ├── 09-post-install.sh  # Final cleanup & instructions
+│   ├── 08-post-install.sh  # Final cleanup & instructions
 │   ├── dev/                # Developer tools (optional)
 │   │   ├── install-mise.sh         # mise runtime manager
 │   │   ├── install-languages.sh    # Programming languages
@@ -324,10 +317,6 @@ hyprsunset -t 4500   # Set temperature (lower = warmer)
 hyprsunset           # Default 4000K
 ```
 
-### Changing Theme
-
-GTK themes can be configured using `nwg-look` or by editing `~/.config/gtk-3.0/settings.ini`.
-
 ## Included Packages
 
 ### Core
@@ -355,8 +344,6 @@ GTK themes can be configured using `nwg-look` or by editing `~/.config/gtk-3.0/s
 
 ### Fonts & Themes
 - ttf-jetbrains-mono-nerd
-- papirus-icon-theme
-- catppuccin-gtk-theme (AUR)
 
 ### Developer Tools (Optional)
 
