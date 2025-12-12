@@ -1,0 +1,17 @@
+# <type>: <subject>
+
+# <body>
+
+# <footer>
+
+# Types:
+#   feat     (new feature)
+#   fix      (bug fix)
+#   docs     (changes to documentation)
+#   style    (formatting, missing semi colons, etc; no code change)
+#   refactor (refactoring production code)
+#   test     (adding missing tests, refactoring tests)
+#   chore    (updating grunt tasks etc; no production code change)
+
+# Subject should be no greater than 50 characters
+# Body should be wrapped at 72 characters
