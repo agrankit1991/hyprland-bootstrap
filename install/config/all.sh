@@ -12,11 +12,15 @@ set -e
 source "$SCRIPT_DIR/lib/colors.sh"
 source "$SCRIPT_DIR/lib/utils.sh"
 source "$SCRIPT_DIR/install/config/git.sh"
+source "$SCRIPT_DIR/install/config/gpg.sh"
 
 # ── Main Configuration ───────────────────────────────────────────────────────
 
 configure_all() {
     print_header "Complete Configuration Setup"
+    
+    # Configure GPG
+    configure_gpg
     
     # Configure Git
     configure_git
