@@ -60,6 +60,10 @@ PACKAGES_SYSTEM=(
     ffmpegthumbnailer # Video thumbnail generator
     reflector         # Arch Linux mirror list updater
     git               # Version control system
+    fcitx5            # Input method framework
+    fcitx5-gtk        # Fcitx5 GTK module
+    fcitx5-qt         # Fcitx5 Qt module
+    fcitx5-configtool # Fcitx5 configuration tool
 )
 
 # Fonts
