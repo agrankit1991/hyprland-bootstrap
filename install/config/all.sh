@@ -16,6 +16,7 @@ source "$SCRIPT_DIR/install/config/gpg.sh"
 source "$SCRIPT_DIR/install/config/fast-shutdown.sh"
 source "$SCRIPT_DIR/install/config/hardware/network.sh"
 source "$SCRIPT_DIR/install/config/hardware/set-wireless-regdom.sh"
+source "$SCRIPT_DIR/install/config/hardware/nvidia.sh"
 
 # ── Main Configuration ───────────────────────────────────────────────────────
 
@@ -36,6 +37,9 @@ configure_all() {
     
     # Set wireless regulatory domain
     set_wireless_regdom
+    
+    # Configure NVIDIA for Hyprland
+    configure_nvidia_hyprland
     
     # Future: Additional configuration scripts can be added here
     # e.g., shell configuration, terminal configuration, etc.
