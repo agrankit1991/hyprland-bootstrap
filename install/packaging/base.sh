@@ -19,8 +19,8 @@ source "$SCRIPT_DIR/install/base-packages.sh"
 install_base_packages() {
     print_header "Installing Base Packages"
     
-    log_info "Updating package database..."
-    sudo pacman -Sy
+    log_info "Updating system and installing packages..."
+    sudo pacman -Syu --noconfirm --needed
     
     # Install Hyprland and Wayland
     log_step "Installing Hyprland and Wayland packages..."
