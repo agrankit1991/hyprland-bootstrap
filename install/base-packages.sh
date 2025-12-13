@@ -40,6 +40,7 @@ PACKAGES_CORE=(
     cliphist          # Clipboard history manager
     grim              # Screenshot utility for Wayland
     slurp             # Region selector for screenshots
+    xdg-terminal-exec # XDG terminal launcher for portals
 )
 
 # Audio (PipeWire)
