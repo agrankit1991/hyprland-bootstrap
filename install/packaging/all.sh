@@ -12,14 +12,18 @@ set -e
 source "$SCRIPT_DIR/lib/colors.sh"
 source "$SCRIPT_DIR/lib/utils.sh"
 source "$SCRIPT_DIR/install/packaging/base.sh"
+source "$SCRIPT_DIR/install/packaging/yay.sh"
 
 # ── Main Installation ────────────────────────────────────────────────────────
 
 install_all_packages() {
     print_header "Complete Package Installation"
-    
+
     # Install all base packages
     install_base_packages
+
+    # Install yay (AUR helper)
+    install_yay
     
     # Future: Additional optional packages can be added here
     # e.g., development tools, media applications, etc.
