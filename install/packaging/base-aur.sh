@@ -22,6 +22,10 @@ install_aur_packages() {
 	log_info "Updating AUR helper (yay) and installing packages..."
 	yay -Syu --noconfirm --needed
 
+	# Utilities
+	log_step "Installing utilities..."
+	install_aur "${PACKAGES_UTILS[@]}"
+
 	# Browsers
 	log_step "Installing browsers..."
 	install_aur "${PACKAGES_BROWSERS[@]}"

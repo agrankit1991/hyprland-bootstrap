@@ -22,3 +22,8 @@ PACKAGES_PRODUCTIVITY=(
 PACKAGES_MEDIA=(
 	vlc                 # VLC media player (AUR for latest or codecs)
 )
+
+# Utilities
+PACKAGES_UTILS=(
+	xdg-terminal-exec    # XDG terminal launcher for portals
+)
