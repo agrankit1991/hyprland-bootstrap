@@ -41,6 +41,8 @@ PACKAGES_CORE=(
     grim              # Screenshot utility for Wayland
     slurp             # Region selector for screenshots
     xdg-terminal-exec # XDG terminal launcher for portals
+    playerctl         # Media player controller (MPRIS)
+    swayosd           # Wayland OSD for volume/brightness/media
 )
 
 # Audio (PipeWire)
