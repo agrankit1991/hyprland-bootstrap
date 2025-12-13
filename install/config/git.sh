@@ -170,12 +170,7 @@ configure_git() {
     configure_git_aliases
     configure_global_gitignore
     configure_commit_template
-    
-    if [[ "${INSTALL_MODE}" == "interactive" ]]; then
-        if confirm "Set up SSH key for GitHub?"; then
-            setup_ssh_key
-        fi
-    fi
+    setup_ssh_key
     
     verify_git_config
     
@@ -187,3 +182,4 @@ configure_git() {
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     configure_git
 fi
+
