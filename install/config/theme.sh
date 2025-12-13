@@ -26,7 +26,7 @@ copy_themes() {
 	local SRC_DIR="$SCRIPT_DIR/themes"
 	local DEST_DIR="$HOME/.config/omarchy/themes"
 	mkdir -p "$DEST_DIR"
-	cp -a "$SRC_DIR/." "$DEST_DIR/"
+	cp -R "$SRC_DIR/*" "$DEST_DIR/"
 	log_success "Theme copy complete."
 }
 

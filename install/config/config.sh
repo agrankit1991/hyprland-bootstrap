@@ -16,7 +16,7 @@ copy_user_configs() {
 	local SRC_DIR="$SCRIPT_DIR/config"
 	local DEST_DIR="$HOME/.config"
 	mkdir -p "$DEST_DIR"
-	cp -a "$SRC_DIR/." "$DEST_DIR/"
+	cp -R "$SRC_DIR/*" "$DEST_DIR/"
 	log_success "Config copy complete."
 }
 
