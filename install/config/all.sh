@@ -17,11 +17,15 @@ source "$SCRIPT_DIR/install/config/fast-shutdown.sh"
 source "$SCRIPT_DIR/install/config/hardware/network.sh"
 source "$SCRIPT_DIR/install/config/hardware/set-wireless-regdom.sh"
 source "$SCRIPT_DIR/install/config/hardware/nvidia.sh"
+source "$SCRIPT_DIR/install/config/config.sh"
 
 # ── Main Configuration ───────────────────────────────────────────────────────
 
 configure_all() {
     print_header "Complete Configuration Setup"
+    
+    # Copy user configs
+    copy_user_configs
     
     # Configure GPG
     configure_gpg
