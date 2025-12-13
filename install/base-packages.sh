@@ -42,6 +42,7 @@ PACKAGES_CORE=(
     slurp             # Region selector for screenshots
     xdg-terminal-exec # XDG terminal launcher for portals
     playerctl         # Media player controller (MPRIS)
+    brightnessctl     # CLI tool to control screen brightness
     swayosd           # Wayland OSD for volume/brightness/media
 )
 
@@ -50,6 +51,7 @@ PACKAGES_AUDIO=(
     pipewire          # Modern audio/video server (replaces PulseAudio)
     pipewire-pulse    # PulseAudio compatibility layer
     wireplumber       # Session manager for PipeWire
+    pamixer           # CLI volume control for PulseAudio/PipeWire
 )
 
 # System utilities
