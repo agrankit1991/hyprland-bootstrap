@@ -13,6 +13,7 @@ source "$SCRIPT_DIR/lib/colors.sh"
 source "$SCRIPT_DIR/lib/utils.sh"
 source "$SCRIPT_DIR/install/packaging/base.sh"
 source "$SCRIPT_DIR/install/packaging/yay.sh"
+source "$SCRIPT_DIR/install/packaging/base-aur.sh"
 
 # ── Main Installation ────────────────────────────────────────────────────────
 
@@ -24,10 +25,10 @@ install_all_packages() {
 
     # Install yay (AUR helper)
     install_yay
-    
-    # Future: Additional optional packages can be added here
-    # e.g., development tools, media applications, etc.
-    
+
+    # Install all AUR/community packages
+    install_aur_packages
+
     echo ""
     log_success "All packages installed successfully!"
 }
