@@ -85,11 +85,11 @@ ask() {
     local prompt="$1"
     local default="$2"
     local hint=""
-    
+
     [[ -n "$default" ]] && hint=" (${default})"
-    
-    echo -en "${COLOR_PROMPT}?${NC} ${prompt}${hint}: "
-    read -r response
+
+    local response
+    read -rp "${COLOR_PROMPT}?${NC} ${prompt}${hint}: " response
     echo "${response:-$default}"
 }
 
