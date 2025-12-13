@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║                     Complete Configuration Setup                            ║
+# ║                     Complete Configuration Setup                           ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 #
 # Runs all configuration scripts.
@@ -18,6 +18,7 @@ source "$SCRIPT_DIR/install/config/hardware/network.sh"
 source "$SCRIPT_DIR/install/config/hardware/set-wireless-regdom.sh"
 source "$SCRIPT_DIR/install/config/hardware/nvidia.sh"
 source "$SCRIPT_DIR/install/config/config.sh"
+source "$SCRIPT_DIR/install/config/theme.sh"
 
 # ── Main Configuration ───────────────────────────────────────────────────────
 
@@ -26,6 +27,9 @@ configure_all() {
     
     # Copy user configs
     copy_user_configs
+
+    # Setup all themes
+    setup_all_themes
     
     # Configure GPG
     configure_gpg
